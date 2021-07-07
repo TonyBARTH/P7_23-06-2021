@@ -1,0 +1,32 @@
+{
+  "name": "groupomania",
+  "version": "1.0.0",
+  "description": "details et dependances du projet groupomania",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TonyBARTH/P7_23-06-2021.git"
+  },
+  "keywords": [
+    "Groupomania",
+    "Fullstack"
+  ],
+  "author": "TonyBARTH",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TonyBARTH/P7_23-06-2021/issues"
+  },
+  "homepage": "https://github.com/TonyBARTH/P7_23-06-2021#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "multer": "^1.4.2",
+    "sequelize": "^6.6.2"
+  }
+}

@@ -1,0 +1,181 @@
+@charset "UTF-8";
+/*
+style.css
+---------
+Feuille de style relative à la maquette "Groupomania"
+*/
+
+
+/* COMMON CSS
+*********************************************************/
+
+body, div, h1, h2, h3, img, form, header, section, aside, nav, ul, footer {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+@font-face {
+  font-family: "Cabin", sans-serif;
+  src: url('href="https://fonts.googleapis.com/css?family=Cabin');
+  font-style: normal;
+}
+
+body {
+    font-family: "Cabin", sans-serif;
+    background-color: #f2f2f2;
+    color: #464646;
+}
+
+h1 {
+    font-size: 2em;
+    width: 100%;
+}
+h2 {
+    font-size: 1.3em;
+    width: 100%;
+}
+h3 {
+    font-size: 1.1em;
+    font-weight: bold;
+  }
+  
+p {
+    font-size: 16px;
+    font-weight: lighter;
+}
+  
+ul {
+    list-style-type: none;
+}
+  
+li {
+    margin-bottom: 0.3em;
+}
+  
+a {
+    text-decoration: none;
+    color: #fd2d01;
+}
+
+.btn {
+  padding: 0.8em 1.2em;
+  font-weight: bold;
+  border-radius: 20px;
+}
+.btn:hover {
+  background-color: #fd2d01;
+  color: white;
+  border-color: #fd2d01;
+}
+
+
+/* HEADER
+*********************************************************/
+
+header {
+  display: flex;
+  align-items: center;
+  height: 4em;
+  position: sticky;
+  top: 0px;
+  align-items: center;
+  background-color: white;
+  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.3);
+  z-index: 5;
+}
+#header-logo {
+  margin: auto 2em;
+  display: flex;
+}
+header img {
+    height: 3em;
+}
+
+
+
+/* WELCOME SECTION
+*********************************************************/
+
+#banner-welcome {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: center;
+    height: 10em;
+  }
+  #banner-welcome h1 {
+    font-weight: bold;
+  }
+  #banner-welcome p {
+    font-size: 18px;
+  }
+
+
+
+/* CONTAINERS 
+*********************************************************/
+
+.container {
+  margin: 2em auto;
+  max-width: 500px;
+  background-color: white;
+  padding: 2em;
+  border-radius: 20px;
+  box-shadow: 3px 5px 15px rgb(0 0 0 / 20%);
+}
+
+
+
+/* FORMS
+*********************************************************/
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  margin: 1em 0;
+}
+label {
+  margin-left: 1em;
+  margin-bottom: 0.2em;
+}
+input {
+  padding: 0.8em;
+  border-radius: 20px;
+  border: 2px solid #cccccc;
+}
+.form-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.5em;
+}
+
+
+/* FOOTER
+*********************************************************/
+
+footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  box-shadow: 0px 0px 12px -5px rgba(0, 0, 0, 0.3);
+  height: 15em;
+  margin-top: 10em;
+}
+footer .fas {
+  height: 20px;
+  width: 20px;
+  margin-right: 10px;
+}
+footer a:hover {
+  border-bottom: 1px solid white;
+}
+
+#logo-footer {
+  height: 3em;
+  margin-bottom: 2em;
+}
