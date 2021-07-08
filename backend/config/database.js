@@ -5,7 +5,7 @@ let dbConfig = {
     HOST: "localhost",
     USER: "root",
     PASSWORD: "GoodMorningDB",
-    DB: "dataBaseName",
+    DB: "groupomania_db",
     dialect: "mysql",
     /* Pool parameters are optionnal */ 
     pool: {

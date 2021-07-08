@@ -4,21 +4,18 @@
 /* Importation des modules */
 const express = require('express');
 const bodyParser = require('body-parser');
-const app = express();
+const mysql = require('mysql');
 
-/* Importation de Node Path pour donner accès au système de fichier (on s'en sert pour enregistrer nos images dans le dossier 'images' */
-const path = require('path');
 
 /* Importation des routes */
 const userRoutes = require('./routes/user');
-
 
 
 /* Connexion à la base de données SQL */
 const dbConnexion = require('./config/database'); 
 dbConnexion.sync(); 
 
-
+const app = express();
 
 /* Headers pour les requêtes API */
 app.use((req, res, next) => {
@@ -32,9 +29,7 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 
 /* Indication des routes à suivre */
-app.use('/images', express.static(path.join(__dirname, 'images')));
-app.use('/api/auth', userRoutes);
-app.use('/api/messages', messagesRoutes);
+app.use('/api', userRoutes);
 
 
 module.exports = app;
