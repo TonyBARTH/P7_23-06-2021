@@ -61,18 +61,15 @@ exports.update = (req, res, next) => {
       .then(hash => {
           const infos = {
               username: req.body.username,
-              image: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
               punchline: req.body.punchline,
               email: req.body.email,
               password: hash
             }
           var target = { where: { user_id: req.params.id }}
-          User.update(infos, target);
-      })
-
-      .then(response => {
-          let user = User.findOne({ where: { user_id: req.params.id } })
-            .then(user => res.status(200).json())
+          User.update(infos, target)
+            .then(resume => {
+              let user = User.findOne({ where: { user_id: req.params.id } })
+              .then(user => res.status(200).json(user))})
       })
       .catch(error => res.status(400).json({ error }))
 };
@@ -83,19 +80,15 @@ exports.delete = (req, res, next) => {
 
   User.findOne({ where: { user_id: req.params.id } })
       .then(deletedUser => {
-          /* Looking for an image related to the user inside the DB */
-          if (deletedUser.image !== null) {
+        /* Looking for an image related to the user inside the DB */
+        if (deletedUser.image !== null) {
           const filename = deletedUser.image.split('/images/')[1];
-          fs.unlink(`images/${filename}`, () => {
-            /* Delete the user from the DB */
-            deletedUser.destroy();
-          })
-      } else {
-          deletedUser.destroy();
-      }
+          fs.unlink(`images/${filename}`)
+        }
+      deletedUser.destroy()
+      .then(res.status(204).json({ message: "Utilisateur supprimé !" }));
       
-      }) .then(res.status(204).json({ message: "Utilisateur supprimé !" }))
-         .catch(error => res.status(400).json({ error }));
+      }) .catch(error => res.status(400).json({ error }));
 };
 
 

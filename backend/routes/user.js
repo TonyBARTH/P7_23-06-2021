@@ -15,10 +15,10 @@ router.post('/signup', userCtrl.signup);
 router.post('/login', userCtrl.login);
 
 /* MODIFICATION d'un utilisateur */
-router.put('/update/:id', userCtrl.update);
+router.put('/user/:id', userCtrl.update);
 
 /* SUPPRESSION d'un utilisateur */
-router.delete('/delete/:id', auth, multer, userCtrl.delete);
+router.delete('/user/:id', auth, multer, userCtrl.delete);
 
 
 //// Penser aux autres routes CRUD ! 

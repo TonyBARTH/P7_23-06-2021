@@ -9,10 +9,10 @@ const multer = require('../middleware/multer-config');
 
 
 /* Chemin vers CREATION d'un message */
-router.post('/', auth, messagesCtrl.create);
+router.post('/messages', auth, messagesCtrl.create);
 
 /* Chemin vers MODIFICATION d'un message */
-router.put('/:id', auth, messagesCtrl.update);
+router.put('/messages/:id', auth, messagesCtrl.update);
 
 /* Chemin vers SUPPRESSION d'un message */
 

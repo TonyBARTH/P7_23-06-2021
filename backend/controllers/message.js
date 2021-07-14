@@ -1,11 +1,17 @@
 const Message = require('../models/message');
 const User = require('../models/user');
+const jwt = require('jsonwebtoken');
 
 
 /* Create and Save a new Message 
 *******************************************************/
 exports.create = (req, res, next) => {
+    const token = req.headers.authorization.split(' ')[1];
+    const decodedToken = jwt.verify(token, 'bR.?t$X?rf}n1voW:0eaX?F|H}wOG&nC');
+    const userId = decodedToken.userId;
+
     const messageContent = req.body;
+    messageContent.user_id = userId;
     const message = Message.create({
     ...messageContent
     })
@@ -28,7 +34,7 @@ exports.update = (req, res, next) => {
     .then(response => {
         let message = Message.findOne({ where: { message_id: req.params.id } }
         ).then(message => res.status(200).json((message)))
-      }).catch(error => res.status(400).json({ error }))
+    }).catch(error => res.status(400).json({ error }))
 };
 
 

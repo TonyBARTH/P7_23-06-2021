@@ -5,13 +5,14 @@ const dbConnexion = require('../config/database');
 
 /* Table "message" creation with schema */
 const Message = dbConnexion.define('message', {
-    message_id:{ 
-        type: Sequelize.UUIDV4,
+    id:{ 
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
         allowNull:false, /* Message content cannot be Null */
         primaryKey:true /* For unique user identification */
     },
     user_id: {
-        type: Sequelize.UUIDV4,
+        type: Sequelize.UUID,
         allowNull: false
     },
     content: { type: Sequelize.STRING(140), allowNull:false, required: true },
