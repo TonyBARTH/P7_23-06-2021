@@ -9,6 +9,7 @@ const mysql = require('mysql');
 
 /* Importation des routes */
 const userRoutes = require('./routes/user');
+const messageRoutes = require('./routes/message');
 
 
 /* Connexion à la base de données SQL */
@@ -30,6 +31,6 @@ app.use(bodyParser.json());
 
 /* Indication des routes à suivre */
 app.use('/api', userRoutes);
-
+app.use('/api', messageRoutes);
 
 module.exports = app;

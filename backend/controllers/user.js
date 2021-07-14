@@ -79,6 +79,25 @@ exports.update = (req, res, next) => {
 
 
 //// DELETE USER ////
+exports.delete = (req, res, next) => {
+
+  User.findOne({ where: { user_id: req.params.id } })
+      .then(deletedUser => {
+          /* Looking for an image related to the user inside the DB */
+          if (deletedUser.image !== null) {
+          const filename = deletedUser.image.split('/images/')[1];
+          fs.unlink(`images/${filename}`, () => {
+            /* Delete the user from the DB */
+            deletedUser.destroy();
+          })
+      } else {
+          deletedUser.destroy();
+      }
+      
+      }) .then(res.status(204).json({ message: "Utilisateur supprimé !" }))
+         .catch(error => res.status(400).json({ error }));
+};
+
 
 
 //// FIND ONE USER ////

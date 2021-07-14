@@ -8,12 +8,17 @@ const userCtrl = require('../controllers/user');
 const auth = require('../middleware/auth');
 const multer = require('../middleware/multer-config');
 
-/* Chemin vers création d'un utilisateur */
+/* Chemin vers CREATION d'un utilisateur */
 router.post('/signup', userCtrl.signup);
 
-/* Chemin pour identification d'un utilisateur */
+/* Chemin pour IDENTIFICATION d'un utilisateur */
 router.post('/login', userCtrl.login);
 
+/* MODIFICATION d'un utilisateur */
+router.put('/update/:id', userCtrl.update);
+
+/* SUPPRESSION d'un utilisateur */
+router.delete('/delete/:id', auth, multer, userCtrl.delete);
 
 
 //// Penser aux autres routes CRUD ! 
