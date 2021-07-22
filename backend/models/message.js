@@ -16,7 +16,7 @@ const Message = dbConnexion.define('message', {
         allowNull: false
     },
     content: { type: Sequelize.STRING(140), allowNull:false, required: true },
-    display: { type: Sequelize.BOOLEAN, defaultValue : true }
+    display: { type: Sequelize.BOOLEAN, defaultValue : true },
 });
 
 

@@ -18,11 +18,11 @@ router.post('/login', userCtrl.login);
 router.put('/user/:id', userCtrl.update);
 
 /* SUPPRESSION d'un utilisateur */
-router.delete('/user/:id', auth, multer, userCtrl.delete);
+router.delete('/user/:id', multer, userCtrl.delete);
 
 
-//// Penser aux autres routes CRUD ! 
-//// Ne pas oublier "auth" ni "multer".
+
+//// Ne pas oublier "auth" ni "multer" !!!
 
 
 

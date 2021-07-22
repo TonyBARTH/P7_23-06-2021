@@ -9,20 +9,22 @@ const multer = require('../middleware/multer-config');
 
 
 /* Chemin vers CREATION d'un message */
-router.post('/messages', auth, messagesCtrl.create);
+router.post('/messages', auth, messagesCtrl.createMessage);
 
 /* Chemin vers MODIFICATION d'un message */
-router.put('/messages/:id', auth, messagesCtrl.update);
+router.put('/messages/:id', messagesCtrl.updateMessage);
 
 /* Chemin vers SUPPRESSION d'un message */
+router.delete('/messages/:id', messagesCtrl.deleteMessage);
 
-
-/* Chemin vers AFFICHAGE d'1 message */
-
+/* Chemin vers AFFICHAGE d'un message */
+router.get('/messages/:id', messagesCtrl.getOneMessage);
 
 /* Chemin vers AFFICHAGE de TOUS les messages */
+router.get('/messages', messagesCtrl.getAllMessages);
 
 
+//// PENSER A RAJOUTER *AUTH* DANS LES ROUTES !!!
 
 
 module.exports = router;

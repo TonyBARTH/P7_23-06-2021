@@ -3,9 +3,9 @@ const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 
 
-/* Create and Save a new Message 
+/* CREATE and Save a new Message 
 *******************************************************/
-exports.create = (req, res, next) => {
+exports.createMessage = (req, res, next) => {
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, 'bR.?t$X?rf}n1voW:0eaX?F|H}wOG&nC');
     const userId = decodedToken.userId;
@@ -20,38 +20,54 @@ exports.create = (req, res, next) => {
 };
 
 
-/* Update a Message by the id in the request
+/* UPDATE a Message by the id in the request
 *******************************************************/
-exports.update = (req, res, next) => {
+exports.updateMessage = (req, res, next) => {
     let value = {
         content: req.body.content,
-        display: req.body.display,
+        display: req.body.display
     };
-    let target = { where: { message_id: req.params.id } };
+    let target = { where: { id: req.params.id } };
 
     Message.update(value, target)
-
-    .then(response => {
-        let message = Message.findOne({ where: { message_id: req.params.id } }
-        ).then(message => res.status(200).json((message)))
-    }).catch(error => res.status(400).json({ error }))
+    .then((response) => {
+        let message = Message.findOne({where: { id: req.params.id }})
+        .then (message => res.status(200).json(message))
+    })
+    .catch(error => res.status(400).json({ error }))
 };
 
 
-/* Retrieve all Messages from the database
+/* FIND ALL Messages from the database
 *******************************************************/
+exports.getAllMessages = (req, res, next) => {
+    Message.findAll({
+        order: [['createdAt', 'DESC']]
+    })
+    .then(response => res.status(200).json(response))
+    .catch(error => res.status(400).json({ error }));
+};
 
 
-/* Find a single Message with an id
+/* FIND a single Message with an id
 *******************************************************/
+exports.getOneMessage = (req, res, next) => {
+    Message.findOne({ where: { id: req.params.id }, 
+      include: [{ model: User }]
+    })
+    .then(response => res.status(200).json(response))
+    .catch(error => res.status(400).json({ error }));
+};
 
 
-/* Delete a Message with the specified id in the request
+/* DELETE a Message with the specified id in the request
 *******************************************************/
-
-
-/* Delete all Messages from the database
-*******************************************************/
-
-
-/* Find all published Messages */
+exports.deleteMessage = (req, res, next) => {
+    const deletedMessage = Message.findOne({ where: { id: req.params.id } })
+        .then(deletedMessage => {
+            deletedMessage.destroy()
+            .then(response => res.status(204).json())
+            .catch(error => res.status(400).json({ error }));
+        })
+        .catch(error => res.status(500).json({ error }));
+};

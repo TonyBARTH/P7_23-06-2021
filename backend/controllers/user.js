@@ -75,7 +75,8 @@ exports.update = (req, res, next) => {
 };
 
 
-//// DELETE USER ////
+/* DELETE USER
+*******************************************************/
 exports.delete = (req, res, next) => {
 
   User.findOne({ where: { user_id: req.params.id } })
@@ -86,14 +87,29 @@ exports.delete = (req, res, next) => {
           fs.unlink(`images/${filename}`)
         }
       deletedUser.destroy()
-      .then(res.status(204).json({ message: "Utilisateur supprimé !" }));
+      .then(res.status(201).json({ message: 'Utilisateur supprimé !' }));
       
       }) .catch(error => res.status(400).json({ error }));
 };
 
 
 
-//// FIND ONE USER ////
+/* FIND ONE USER
+*******************************************************/
+exports.getUser = (req, res, next) => {
+  User.findOne({
+      where: { user_id: req.params.id },
+      include: [ { model: Message } ]
+  })
+  .then(response =>
+      res.status(200).json(response))
+      .catch(error => res.status(400).json({ error }));
+};
 
-
-//// FIND ALL USER ////
+/* FIND ALL USER
+*******************************************************/
+exports.getUsers = (req, res, next) => {
+  User.findAll().then(response =>
+      res.status(200).json(response))
+      .catch(error => res.status(400).json({ error }));
+};
