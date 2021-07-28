@@ -98,18 +98,20 @@ exports.delete = (req, res, next) => {
 *******************************************************/
 exports.getUser = (req, res, next) => {
   User.findOne({
-      where: { user_id: req.params.id },
-      include: [ { model: Message } ]
+      where: { user_id: req.params.id }
   })
   .then(response =>
       res.status(200).json(response))
       .catch(error => res.status(400).json({ error }));
 };
 
+
+
 /* FIND ALL USER
 *******************************************************/
 exports.getUsers = (req, res, next) => {
-  User.findAll().then(response =>
-      res.status(200).json(response))
-      .catch(error => res.status(400).json({ error }));
+  User.findAll()
+      .then(response =>
+        res.status(200).json(response))
+        .catch(error => res.status(400).json({ error }));
 };

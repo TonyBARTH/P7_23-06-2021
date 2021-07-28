@@ -14,11 +14,17 @@ router.post('/signup', userCtrl.signup);
 /* Chemin pour IDENTIFICATION d'un utilisateur */
 router.post('/login', userCtrl.login);
 
+/* AFFICHAGE de TOUS les utilisateurs */
+router.get('/user', userCtrl.getUsers);
+
+/* AFFICHAGE D'UN SEUL utilisateur */
+router.get('/user/:id', userCtrl.getUser);
+
 /* MODIFICATION d'un utilisateur */
 router.put('/user/:id', userCtrl.update);
 
 /* SUPPRESSION d'un utilisateur */
-router.delete('/user/:id', multer, userCtrl.delete);
+router.delete('/user/:id', userCtrl.delete);
 
 
 

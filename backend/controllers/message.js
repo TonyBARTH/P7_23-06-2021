@@ -52,9 +52,7 @@ exports.getAllMessages = (req, res, next) => {
 /* FIND a single Message with an id
 *******************************************************/
 exports.getOneMessage = (req, res, next) => {
-    Message.findOne({ where: { id: req.params.id }, 
-      include: [{ model: User }]
-    })
+    Message.findOne({ where: { id: req.params.id } })
     .then(response => res.status(200).json(response))
     .catch(error => res.status(400).json({ error }));
 };
