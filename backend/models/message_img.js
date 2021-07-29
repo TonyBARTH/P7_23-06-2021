@@ -4,7 +4,7 @@ const Sequelize = require('sequelize');
 const dbConnexion = require('../config/database');
 
 /* Table "message" creation with schema */
-const Message = dbConnexion.define('message', {
+const MessageIMG = dbConnexion.define('message_img', {
     id:{ 
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
@@ -16,9 +16,10 @@ const Message = dbConnexion.define('message', {
         allowNull: false
     },
     content: { type: Sequelize.STRING(140), allowNull:false, required: true },
-    display: { type: Sequelize.BOOLEAN, defaultValue : true },
+    image: { type: Sequelize.STRING, required: false },
+    display: { type: Sequelize.BOOLEAN, defaultValue: true },
     publishedAt: { type: Sequelize.DATE }
 });
 
 
-module.exports = Message
+module.exports = MessageIMG

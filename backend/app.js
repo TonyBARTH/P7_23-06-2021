@@ -6,10 +6,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
 
+const path = require('path');
 
 /* Importation des routes */
 const userRoutes = require('./routes/user');
 const messageRoutes = require('./routes/message');
+const messageImgRoutes = require('./routes/message_img');
 
 
 /* Connexion à la base de données SQL */
@@ -30,7 +32,9 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 
 /* Indication des routes à suivre */
+app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/api', userRoutes);
 app.use('/api', messageRoutes);
+app.use('/api', messageImgRoutes);
 
 module.exports = app;
