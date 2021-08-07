@@ -24,6 +24,26 @@ exports.createMessageIMG = (req, res, next) => {
 };
 
 
+/* READ all Messages with image
+*******************************************************/
+exports.getAllMessagesIMG = (req, res, next) => {
+    MessageIMG.findAll({
+        order: [['createdAt', 'DESC']]
+    })
+    .then(response => res.status(200).json(response))
+    .catch(error => res.status(400).json({ error }));
+};
+
+
+/* FIND a single Message with an id
+*******************************************************/
+exports.getOneMessageIMG = (req, res, next) => {
+    MessageIMG.findOne({ where: { id: req.params.id } })
+    .then(response => res.status(200).json(response))
+    .catch(error => res.status(400).json({ error }));
+};
+
+
 /* UPDATE a Message with image
 *******************************************************/
 exports.updateMessageIMG = (req, res, next) => {
@@ -39,5 +59,22 @@ exports.updateMessageIMG = (req, res, next) => {
         let message_img = MessageIMG.findOne({where: { id: req.params.id }})
         .then (message_img => res.status(200).json(message_img))
     })
-    .catch(error => res.status(400).json({ error }))
+    .catch(error => res.status(400).json({ error }));
+};
+
+
+/* DELETE a Message with image
+*******************************************************/
+
+exports.deleteMessageIMG = (req, res, next) => {
+    MessageIMG.findOne({ where: { id : req.params.id } })
+        .then(selectedMessage => {
+            const filename = selectedMessage.image.split('/images/')[1];
+            fs.unlink(`images/${filename}`, () => {
+                selectedMessage.destroy()
+                .then(() => res.status(204).json())
+                .catch(error => res.status(400).json({ error }));
+            })
+        })
+        .catch(error => res.status(500).json({ error }));
 };
