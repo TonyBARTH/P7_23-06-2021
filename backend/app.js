@@ -12,11 +12,13 @@ const path = require('path');
 const userRoutes = require('./routes/user');
 const messageRoutes = require('./routes/message');
 const messageImgRoutes = require('./routes/message_img');
+const commentRoutes = require('./routes/commentTxt');
+const commentImgRoutes = require('./routes/commentImg');
 
 
 /* Connexion à la base de données SQL */
 const dbConnexion = require('./config/database'); 
-dbConnexion.sync(); 
+dbConnexion.sync({alter:true}); 
 
 const app = express();
 
@@ -36,5 +38,7 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/api', userRoutes);
 app.use('/api', messageRoutes);
 app.use('/api', messageImgRoutes);
+app.use('/api', commentRoutes);
+app.use('/api', commentImgRoutes);
 
 module.exports = app;
