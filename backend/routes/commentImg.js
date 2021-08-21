@@ -9,23 +9,23 @@ const multer = require('../middleware/multer-config');
 
 
 /* Chemin vers CREATION d'un commentaire avec image */
-router.post('/commentImg', multer, commentImgCtrl.createCommentIMG);
+router.post('/comment_img', multer, commentImgCtrl.createCommentIMG);
 
 
 /* Chemin vers AFFICHAGE de TOUS les commentaires avec images */
-router.get('/commentImg', multer, commentImgCtrl.getAllCommentsIMG);
+router.get('/comment_img', multer, commentImgCtrl.getAllCommentsIMG);
 
 
 /* Chemin vers AFFICHAGE d'un commentaire avec image */
-router.get('/commentImg/:id', multer, commentImgCtrl.getOneCommentIMG);
+router.get('/comment_img/:id', multer, commentImgCtrl.getOneCommentIMG);
 
 
 /* Chemin vers MODIFICATION d'un commentaire avec image */
-router.put('/commentImg/:id', multer, commentImgCtrl.updateCommentIMG);
+router.put('/comment_img/:id', multer, commentImgCtrl.updateCommentIMG);
 
 
 /* Chemin vers SUPPRESSION d'un commentaire avec image */
-router.delete('/commentImg/:id', multer, commentImgCtrl.deleteCommentIMG);
+router.delete('/comment_img/:id', multer, commentImgCtrl.deleteCommentIMG);
 
 
 
