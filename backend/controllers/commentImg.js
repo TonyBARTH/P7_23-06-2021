@@ -49,17 +49,16 @@ exports.getOneCommentIMG = (req, res, next) => {
 exports.updateCommentIMG = (req, res, next) => {
     let values = {
         content: req.body.content,
-        image: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
-        display: req.body.display
+        image: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     };
     let target = { where: { id: req.params.id } };
 
     CommentIMG.update(values, target)
     .then((response) => {
-        let comment_img = commentIMG.findOne({where: { id: req.params.id }})
+        let comment_img = CommentIMG.findOne({where: { id: req.params.id }})
         .then (comment_img => res.status(200).json(comment_img))
     })
-    .catch(error => res.status(400).json({ error }));
+    .catch(error => {console.log(error);res.status(400).json({ error })});
 };
 
 
